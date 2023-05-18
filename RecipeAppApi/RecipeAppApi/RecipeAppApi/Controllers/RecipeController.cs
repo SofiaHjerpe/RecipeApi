@@ -61,9 +61,17 @@ namespace RecipeAppApi.Controllers
         [HttpPut("{id}", Name = "PutRecipe")]
         public async Task<IActionResult> PutRecipe(string  id, string title, string summary)
         {
-            var db = new Database();    
-            await db.UpdateRecipe(id, title, summary);  
-            return Ok();
+            var db = new Database();
+
+            if (title.Length > 100 || summary.Length > 5000)
+            {
+                return BadRequest("the title or summary is in the wrong format ... ");
+            }
+            else
+            {
+                await db.UpdateRecipe(id, title, summary);
+                return Ok();
+            }
         }
     }
 }
