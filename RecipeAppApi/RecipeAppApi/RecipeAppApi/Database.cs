@@ -9,7 +9,7 @@ namespace RecipeAppApi
         private IMongoDatabase GetDb()
         {
             MongoClient client = new MongoClient();
-            var db = client.GetDatabase("MyRecipeDB");
+            var db = client.GetDatabase("RecDB");
             return db;
         }
 
